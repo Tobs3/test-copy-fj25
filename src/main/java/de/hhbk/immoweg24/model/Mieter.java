@@ -1,16 +1,17 @@
 package de.hhbk.immoweg24.model;
 
 import jakarta.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "mieter")
-public class Mieter {
+public class Mieter extends ModelTemplate implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private long id;
 
     @Column(name = "name", length = 100, nullable = false)
     private String name;
@@ -28,7 +29,7 @@ public class Mieter {
     @OneToMany(mappedBy = "mieter", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Bankdaten> bankdaten;
 
-    public Mieter(Long id, String name, Adresse adresse, String telefon, String email, List<Bankdaten> bankdaten) {
+    public Mieter(long id, String name, Adresse adresse, String telefon, String email, List<Bankdaten> bankdaten) {
         this.id = id;
         this.name = name;
         this.adresse = adresse;
@@ -40,11 +41,11 @@ public class Mieter {
     public Mieter() {
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

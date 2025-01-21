@@ -2,16 +2,17 @@ package de.hhbk.immoweg24.model;
 
 import de.hhbk.immoweg24.model.enums.StatusMietobjekt;
 import jakarta.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "mietobjekt")
-public class Mietobjekt {
+public class Mietobjekt extends ModelTemplate implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private long id;
 
     @Column(name = "objektnummer", nullable = false, unique = true)
     private Integer objektnummer;
@@ -26,25 +27,29 @@ public class Mietobjekt {
     @Column(name = "kaltkosten", nullable = false, precision = 10, scale = 2)
     private BigDecimal kaltkosten;
 
+    @Column(name = "sum_nebenkosten", nullable = false, precision = 10, scale = 2)
+    private BigDecimal sumNebenkosten; // Summe aller aktiven Nebekosten des Mietobjekts
+    
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private StatusMietobjekt status = StatusMietobjekt.VERFÜGBAR;
 
     public Mietobjekt() {}
 
-    public Mietobjekt(Integer objektnummer, String typ, Adresse adresse, BigDecimal kaltkosten, StatusMietobjekt status) {
+    public Mietobjekt(Integer objektnummer, String typ, Adresse adresse, BigDecimal kaltkosten, BigDecimal sumNebenkosten, StatusMietobjekt status) {
         this.objektnummer = objektnummer;
         this.typ = typ;
         this.adresse = adresse;
         this.kaltkosten = kaltkosten;
+        this.sumNebenkosten = sumNebenkosten;
         this.status = status;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -79,7 +84,15 @@ public class Mietobjekt {
     public void setKaltkosten(BigDecimal kaltkosten) {
         this.kaltkosten = kaltkosten;
     }
+    
+    public BigDecimal getSummeNebenkosten() {
+        return sumNebenkosten;
+    }
 
+    public void setSummeNebenkosten(BigDecimal summeNebenkosten) {
+        this.sumNebenkosten = summeNebenkosten;
+    }
+    
     public StatusMietobjekt getStatus() {
         return status;
     }

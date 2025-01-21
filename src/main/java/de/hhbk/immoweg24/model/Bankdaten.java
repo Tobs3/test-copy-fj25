@@ -1,15 +1,16 @@
 package de.hhbk.immoweg24.model;
 
 import jakarta.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "bankdaten")
-public class Bankdaten {
+public class Bankdaten extends ModelTemplate implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private long id;
 
     @Column(name = "iban", length = 43, nullable = false)
     private String iban;
@@ -24,7 +25,7 @@ public class Bankdaten {
     @JoinColumn(name = "mieter_id", referencedColumnName = "id")
     private Mieter mieter;
 
-    public Bankdaten(Long id, String iban, String bic, String kontoinhaber, Mieter mieter) {
+    public Bankdaten(long id, String iban, String bic, String kontoinhaber, Mieter mieter) {
         this.id = id;
         this.iban = iban;
         this.bic = bic;
@@ -35,11 +36,11 @@ public class Bankdaten {
     public Bankdaten() {
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

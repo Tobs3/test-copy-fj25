@@ -3,14 +3,15 @@ package de.hhbk.immoweg24.model;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import de.hhbk.immoweg24.model.enums.StatusNebenkosten;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "Nebenkosten")
-public class Nebenkosten {
+public class Nebenkosten extends ModelTemplate implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "mietobjekt_id", nullable = false)
@@ -26,7 +27,7 @@ public class Nebenkosten {
     @Column(name = "status", nullable = false)
     private StatusNebenkosten status;
 
-    public Nebenkosten(Long id, Mietobjekt mietobjekt, String bezeichnung, BigDecimal betrag, StatusNebenkosten status) {
+    public Nebenkosten(long id, Mietobjekt mietobjekt, String bezeichnung, BigDecimal betrag, StatusNebenkosten status) {
         this.id = id;
         this.mietobjekt = mietobjekt;
         this.bezeichnung = bezeichnung;
@@ -37,11 +38,11 @@ public class Nebenkosten {
     public Nebenkosten() {
     }
     
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

@@ -1,15 +1,16 @@
 package de.hhbk.immoweg24.model;
 
 import jakarta.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "adresse")
-public class Adresse {
+public class Adresse extends ModelTemplate implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private long id;
 
     @Column(name = "strasse", length = 100, nullable = false)
     private String strasse;
@@ -36,11 +37,11 @@ public class Adresse {
         this.land = land;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

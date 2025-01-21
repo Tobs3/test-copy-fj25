@@ -2,16 +2,17 @@ package de.hhbk.immoweg24.model;
 
 import de.hhbk.immoweg24.model.enums.StatusDokument;
 import jakarta.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "dokument")
-public class Dokument {
+public class Dokument extends ModelTemplate implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private long id;
 
     @Column(name = "dateiname", length = 255, nullable = false)
     private String dateiname;
@@ -39,7 +40,7 @@ public class Dokument {
     @Column(name = "dateipfad", columnDefinition = "TEXT", nullable = false)
     private String dateipfad;
 
-    public Dokument(Long id, String dateiname, String beschreibung, Mietobjekt mietobjekt, String dateiformat, LocalDate datum, Double version, String dateipfad) {
+    public Dokument(long id, String dateiname, String beschreibung, Mietobjekt mietobjekt, String dateiformat, LocalDate datum, Double version, String dateipfad) {
         this.id = id;
         this.dateiname = dateiname;
         this.beschreibung = beschreibung;
@@ -53,11 +54,11 @@ public class Dokument {
     public Dokument() {
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

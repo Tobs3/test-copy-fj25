@@ -1,21 +1,25 @@
 package de.hhbk.immoweg24.model;
 
-public class Benutzerrollen {
-    private int id;
-    private String name;
-    private String berechtigungen;
+import java.io.Serializable;
 
-    public Benutzerrollen(int id, String name, String berechtigungen) {
+public class Benutzerrollen extends ModelTemplate implements Serializable {
+    private long id;
+    private String name;
+    private String berechtigungen; // JSON
+    private int gewicht;
+
+    public Benutzerrollen(long id, String name, String berechtigungen, int gewicht) {
         this.id = id;
         this.name = name;
         this.berechtigungen = berechtigungen;
+        this.gewicht = gewicht;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -35,5 +39,12 @@ public class Benutzerrollen {
         this.berechtigungen = berechtigungen;
     }
     
+    public int getGewicht() {
+        return gewicht;
+    }
+    
+    public void setGewicht(int gewicht) {
+        this.gewicht = gewicht;
+    }
     
 }

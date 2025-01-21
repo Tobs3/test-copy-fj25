@@ -2,18 +2,19 @@ package de.hhbk.immoweg24.model;
 
 import de.hhbk.immoweg24.model.enums.StatusZahlung;
 import jakarta.persistence.*;
+import java.io.Serializable;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "zahlung")
-public class Zahlung {
+public class Zahlung extends ModelTemplate implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private long id;
 
     @Column(name = "betrag", nullable = false, precision = 10, scale = 2)
     private BigDecimal betrag;
@@ -48,11 +49,11 @@ public class Zahlung {
         this.datum = datum;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
