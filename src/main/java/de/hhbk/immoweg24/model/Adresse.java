@@ -26,7 +26,6 @@ public class Adresse {
     @Column(name = "land", length = 50, nullable = false)
     private String land;
 
-    // Konstruktoren
     public Adresse() {}
 
     public Adresse(String strasse, String hausnummer, String plz, String stadt, String land) {
@@ -37,7 +36,6 @@ public class Adresse {
         this.land = land;
     }
 
-    // Getter und Setter
     public Long getId() {
         return id;
     }
