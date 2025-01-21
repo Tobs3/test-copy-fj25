@@ -81,16 +81,14 @@ public class GenericDao<T extends ModelTemplate> implements Serializable {
         });
     }
 
-    public long save(T entity) throws Exception {
-        return (long) executeTransaction(session -> {
-            if (session.contains(entity)) {
-                session.merge(entity); // Entität ist bereits im persistenten Kontext
-            } else if (entity.getId() <= 0) {
+    public T save(T entity) throws Exception {
+        return (T) executeTransaction(session -> {
+            if (entity.getId() <= 0) {
                 session.persist(entity); // Neue Entität ohne gültige ID
             } else {
-                session.merge(entity); // Detached Entität mit gesetzter ID
+                session.merge(entity); 
             }
-            return entity.getId();
+            return entity;
         });
     }
 

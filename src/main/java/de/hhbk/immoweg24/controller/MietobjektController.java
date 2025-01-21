@@ -1,8 +1,10 @@
 package de.hhbk.immoweg24.controller;
 
+import de.hhbk.immoweg24.model.Adresse;
 import de.hhbk.immoweg24.model.Mietobjekt;
 import de.hhbk.immoweg24.model.enums.StatusMietobjekt;
 import de.hhbk.immoweg24.services.MietobjektService;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -17,6 +19,50 @@ public class MietobjektController {
         this.mietobjektService = new MietobjektService();
     }
     
+    
+    //-------------------------------------------------------------------------
+    //  CRUD
+    
+    /**
+     * Erstellt ein neues Mietobjekt, generiert seine ID und speichert es in 
+     * der Datenbank.
+     * 
+     * @param objektnummer
+     * @param typ
+     * @param adresse
+     * @param kaltkosten
+     * @param sumNebenkosten
+     * @param status
+     * @return Mietobjekt mit ID
+     */
+    public Mietobjekt createMietobjekt(int objektnummer, String typ, Adresse adresse, BigDecimal kaltkosten, BigDecimal sumNebenkosten, StatusMietobjekt status) {
+        Mietobjekt newMietobjekt = new Mietobjekt(objektnummer, typ, adresse, kaltkosten, sumNebenkosten, status);
+        return saveMietobjekt(newMietobjekt);
+    }
+    
+    /**
+     * Speichert das gegebene Mietobjekt in der Datenbank.
+     * 
+     * @param mietobjekt 
+     * @return das gespeicherte {@link Mietobjekt}
+     */
+    public Mietobjekt saveMietobjekt(Mietobjekt mietobjekt) {
+        try {
+            return mietobjektService.saveMietobjekt(mietobjekt);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public boolean deleteMietobjekt(Mietobjekt mietobjekt) {
+        try {
+            return mietobjektService.deleteMietobjekt(mietobjekt);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
     
     //-------------------------------------------------------------------------
     //  GET WITH FILTER

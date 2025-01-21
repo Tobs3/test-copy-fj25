@@ -16,7 +16,22 @@ public class MietobjektService {
     public MietobjektService() {
         this.mietobjektDao = new MietobjektDao();
     }
+    
 
+    //-------------------------------------------------------------------------
+    //  CRUD
+    
+    public Mietobjekt saveMietobjekt(Mietobjekt mietobjekt) throws Exception {
+        return mietobjektDao.save(mietobjekt);
+    }
+
+    public void updateMietobjekt(Mietobjekt mietobjekt) throws Exception {
+        mietobjektDao.merge(mietobjekt);
+    }
+
+    public boolean deleteMietobjekt(Mietobjekt mietobjekt) throws Exception {
+        return mietobjektDao.deleteItem(mietobjekt);
+    }
     
     //-------------------------------------------------------------------------
     //  GET WITH FILTER

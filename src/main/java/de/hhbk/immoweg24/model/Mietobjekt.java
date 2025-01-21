@@ -15,7 +15,7 @@ public class Mietobjekt extends ModelTemplate implements Serializable {
     private long id;
 
     @Column(name = "objektnummer", nullable = false, unique = true)
-    private Integer objektnummer;
+    private int objektnummer;
 
     @Column(name = "typ", length = 50)
     private String typ;
@@ -36,7 +36,7 @@ public class Mietobjekt extends ModelTemplate implements Serializable {
 
     public Mietobjekt() {}
 
-    public Mietobjekt(Integer objektnummer, String typ, Adresse adresse, BigDecimal kaltkosten, BigDecimal sumNebenkosten, StatusMietobjekt status) {
+    public Mietobjekt(int objektnummer, String typ, Adresse adresse, BigDecimal kaltkosten, BigDecimal sumNebenkosten, StatusMietobjekt status) {
         this.objektnummer = objektnummer;
         this.typ = typ;
         this.adresse = adresse;
@@ -53,11 +53,11 @@ public class Mietobjekt extends ModelTemplate implements Serializable {
         this.id = id;
     }
 
-    public Integer getObjektnummer() {
+    public int getObjektnummer() {
         return objektnummer;
     }
 
-    public void setObjektnummer(Integer objektnummer) {
+    public void setObjektnummer(int objektnummer) {
         this.objektnummer = objektnummer;
     }
 
