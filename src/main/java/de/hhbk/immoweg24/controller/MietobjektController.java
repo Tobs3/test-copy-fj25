@@ -2,7 +2,7 @@ package de.hhbk.immoweg24.controller;
 
 import de.hhbk.immoweg24.model.Mietobjekt;
 import de.hhbk.immoweg24.model.enums.StatusMietobjekt;
-import de.hhbk.immoweg24.service.MietobjektService;
+import de.hhbk.immoweg24.services.MietobjektService;
 import java.util.List;
 
 /**

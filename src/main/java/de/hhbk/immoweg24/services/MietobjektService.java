@@ -1,4 +1,4 @@
-package de.hhbk.immoweg24.service;
+package de.hhbk.immoweg24.services;
 
 import de.hhbk.immoweg24.dao.MietobjektDao;
 import de.hhbk.immoweg24.model.Mietobjekt;
