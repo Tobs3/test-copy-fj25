@@ -22,7 +22,13 @@ public class Zahlung extends ModelTemplate implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mieter_id", referencedColumnName = "id")
     private Mieter mieter;
-
+    
+    @Column(name="iban")
+    private String iban;
+        
+    @Column(name="bic")
+    private String bic;
+    
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mietobjekt_id", referencedColumnName = "id")
     private Mietobjekt mietobjekt;
@@ -40,9 +46,11 @@ public class Zahlung extends ModelTemplate implements Serializable {
     public Zahlung() {
     }
 
-    public Zahlung(BigDecimal betrag, Mieter mieter, Mietobjekt mietobjekt, StatusZahlung status, String verwendungszweck, LocalDate datum) {
+    public Zahlung(BigDecimal betrag, Mieter mieter, String iban, String bic, Mietobjekt mietobjekt, StatusZahlung status, String verwendungszweck, LocalDate datum) {
         this.betrag = betrag;
         this.mieter = mieter;
+        this.iban = iban;
+        this.bic = bic;
         this.mietobjekt = mietobjekt;
         this.status = status;
         this.verwendungszweck = verwendungszweck;
