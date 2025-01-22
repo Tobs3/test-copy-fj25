@@ -13,8 +13,11 @@ public class Mieter extends ModelTemplate implements Serializable {
     @Column(name = "id")
     private long id;
 
-    @Column(name = "name", length = 100, nullable = false)
-    private String name;
+    @Column(name = "vorname", length = 100, nullable = false)
+    private String vorname;
+    
+    @Column(name = "nachname", length = 100, nullable = false)
+    private String nachname;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "adresse_id", referencedColumnName = "id")
@@ -28,19 +31,36 @@ public class Mieter extends ModelTemplate implements Serializable {
 
     @OneToMany(mappedBy = "mieter", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Bankdaten> bankdaten;
-
-    public Mieter(long id, String name, Adresse adresse, String telefon, String email, List<Bankdaten> bankdaten) {
+    
+    // --
+    
+    
+    /**
+     * Constructor.
+     * @param id
+     * @param vorname
+     * @param nachname
+     * @param adresse
+     * @param telefon
+     * @param email
+     * @param bankdaten 
+     */
+    public Mieter(long id, String vorname, String nachname, Adresse adresse, String telefon, String email, List<Bankdaten> bankdaten) {
         this.id = id;
-        this.name = name;
+        this.vorname = vorname;
+        this.nachname = nachname;
         this.adresse = adresse;
         this.telefon = telefon;
         this.email = email;
         this.bankdaten = bankdaten;
     }
 
-    public Mieter() {
-    }
-
+    
+    public Mieter() {}
+    
+    // --
+    
+    
     public long getId() {
         return id;
     }
@@ -49,14 +69,22 @@ public class Mieter extends ModelTemplate implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getVorname() {
+        return vorname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setVorname(String vorname) {
+        this.vorname = vorname;
+    }
+    
+    public String getNachname() {
+        return nachname;
     }
 
+    public void setNachname(String nachname) {
+        this.nachname = nachname;
+    }
+    
     public Adresse getAdresse() {
         return adresse;
     }
@@ -89,13 +117,19 @@ public class Mieter extends ModelTemplate implements Serializable {
         this.bankdaten = bankdaten;
     }    
 
+    
+    // --
+    
     @Override
     public String toString() {
-        return "Mieter{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", telefon='" + telefon + '\'' +
-                ", email='" + email + '\'' +
+        return "Mieter{" + 
+                "id=" + id + 
+                ", vorname=" + vorname + 
+                ", nachname=" + nachname + 
+                ", adresse=" + adresse + 
+                ", telefon=" + telefon + 
+                ", email=" + email + 
+                ", bankdaten=" + bankdaten + 
                 '}';
     }
 }
