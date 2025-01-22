@@ -2,8 +2,8 @@ de\hhbk\immoweg24\model\Bankdaten.class
 de\hhbk\immoweg24\model\Mietobjekt.class
 de\hhbk\immoweg24\utils\HibernateUtil.class
 de\hhbk\immoweg24\model\enums\StatusMietobjekt.class
-de\hhbk\immoweg24\service\MietobjektService.class
 de\hhbk\immoweg24\model\enums\StatusZahlung.class
+de\hhbk\immoweg24\services\ServiceTemplate.class
 de\hhbk\immoweg24\JakartaRestConfiguration.class
 de\hhbk\immoweg24\model\Zahlung.class
 de\hhbk\immoweg24\model\enums\StatusNebenkosten.class
@@ -18,5 +18,6 @@ de\hhbk\immoweg24\model\Interfaces\IdInterface.class
 de\hhbk\immoweg24\model\enums\StatusDokument.class
 de\hhbk\immoweg24\resources\JakartaEE8Resource.class
 de\hhbk\immoweg24\dao\GenericDao.class
+de\hhbk\immoweg24\services\MietobjektService.class
 de\hhbk\immoweg24\dao\MietobjektDao.class
 de\hhbk\immoweg24\model\Adresse.class
