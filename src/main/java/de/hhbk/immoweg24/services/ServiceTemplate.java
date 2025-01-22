@@ -11,8 +11,8 @@ public class ServiceTemplate<T extends ModelTemplate, D extends GenericDao<T>> i
     
     
     /**
-     * Constructor.
-     * @param dao the database access object
+     * Konstruktor.
+     * @param dao Datenbanken-Zugriffsobjekt
      */
     public ServiceTemplate(D dao) {
         super();
