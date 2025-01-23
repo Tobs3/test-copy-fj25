@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class CsvProcessor {
     
-    private final String DELIMITER = ",";
+    private final String DELIMITER = ";";
     private String filePath = "";
     private String csvTitle = "";
     private List<String> csvHeader;
