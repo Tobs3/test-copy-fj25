@@ -30,11 +30,7 @@ public class GenericDao<T extends ModelTemplate> implements Serializable {
     //  Class
     //-------------------------------------------------------------------------     
     protected Class<T> clazz = null;
-
-    public GenericDao() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
+    
     public void setClazz(Class<T> c) {
         this.clazz = c;
     }
