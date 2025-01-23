@@ -115,6 +115,10 @@ public class Mietverhaeltnis extends ModelTemplate {
         this.status = StatusMietverhaeltnis.BEENDET;
         this.endDatum = endDatum;
     }
+    
+    public boolean isGekuendigt() {
+        return this.status == StatusMietverhaeltnis.GEKÜNDIGT;
+    }
 
     /**
      * Dynamische Berechnung der Warmmiete basierend auf Mietobjekt.
