@@ -4,6 +4,7 @@ import de.hhbk.immoweg24.model.ModelTemplate;
 import de.hhbk.immoweg24.utils.HibernateUtil;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 import org.hibernate.Session;
@@ -29,6 +30,10 @@ public class GenericDao<T extends ModelTemplate> implements Serializable {
     //  Class
     //-------------------------------------------------------------------------     
     protected Class<T> clazz = null;
+
+    public GenericDao() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
     public void setClazz(Class<T> c) {
         this.clazz = c;
@@ -80,6 +85,73 @@ public class GenericDao<T extends ModelTemplate> implements Serializable {
             return session.get(getClazz(), id);
         });
     }
+    
+    // -- Item for value --
+    
+    
+    /**
+     * Erhalte das spezifizierte Objekt mit entsprechendem Wert, wenn es in der 
+     * Datenbank existiert.
+     * 
+     * @param fieldName Der Name des Feldes, das abgefragt werden soll.
+     * @param value Der Wert des Feldes, nach dem gesucht wird.
+     * @return
+     * @throws Exception 
+     */
+    public T findByValue(String fieldName, Object value) throws Exception {
+        return (T) executeQuery(session -> {
+            String queryString = "FROM " + clazz.getName() + " WHERE " + fieldName + " = :value";
+            Query<T> query = session.createQuery(queryString, clazz);
+            query.setParameter("value", value);
+            return query.uniqueResult();
+        });
+    }
+    
+    /**
+    * Sucht ein Objekt basierend auf mehreren Feld-Wert-Paaren.
+    *
+    * @param fieldValues Eine Map, die die Feldnamen als Schlüssel und die Werte als Map-Werte enthält.
+    * @return Das erste passende Objekt, das alle Bedingungen erfüllt, oder null, wenn kein Treffer vorhanden ist.
+    * @throws Exception Wenn ein Fehler bei der Datenbankabfrage auftritt.
+    */
+   public T findByValues(Map<String, Object> fieldValues) throws Exception {
+       return (T) executeQuery(session -> {
+           // Dynamische Abfrageerstellung
+           StringBuilder queryString = new StringBuilder("FROM " + clazz.getName() + " WHERE ");
+           fieldValues.keySet().forEach(field -> queryString.append(field).append(" = :").append(field).append(" AND "));
+           queryString.setLength(queryString.length() - 5); // Entfernt das letzte " AND "
+
+           // HQL-Query erstellen
+           Query<T> query = session.createQuery(queryString.toString(), clazz);
+           fieldValues.forEach(query::setParameter);
+
+           // Rückgabe des ersten passenden Ergebnisses
+           return query.uniqueResult();
+       });
+   }
+    
+    /**
+     * Erhalte alle existierenden Objekte der Datenbank, die den spezifizierten 
+     * Parametern entsprechen.
+     * 
+     * @param fieldValues Die Spaltennamen:Feldwerte nach denen gesucht wird.
+     * @return Alle existierenden Datenbankobjekte, die den parametern entsprechen.
+     * @throws Exception Wenn ein Fehler bei der Operation auftritt.
+     */
+    public List<T> findAllByValue(Map<String, Object> fieldValues) throws Exception {
+        return (List<T>) executeQuery(session -> {
+            StringBuilder queryString = new StringBuilder("FROM " + clazz.getName() + " WHERE ");
+            fieldValues.keySet().forEach(field -> queryString.append(field).append(" = :").append(field).append(" AND "));
+            queryString.setLength(queryString.length() - 5); // Entferne das letzte " AND "
+
+            Query<T> query = session.createQuery(queryString.toString(), clazz);
+            fieldValues.forEach(query::setParameter);
+
+            return query.getResultList();
+        });
+    }
+    
+    // --
 
     public T save(T entity) throws Exception {
         return (T) executeTransaction(session -> {

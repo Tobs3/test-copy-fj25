@@ -40,12 +40,14 @@ public class CsvProcessor {
 //            if (processor.readCsv()) {
 //                AbstractCsvImporter importer = (AbstractCsvImporter) processor.getImporter();
 //                List<T> resultObjects = importer.processData();
+//                // TODO: user should confirm resultObjects 
+//                // TODO: save into db (importer.importData();)
 //            }
 //        } catch (Exception e) {
 //                e.printStackTrace();
 //        }
 //    }
-    
+//    
     // -- 
 
     /**
@@ -123,6 +125,30 @@ public class CsvProcessor {
     
     public void setFilePath(String filePath) {
         this.filePath = filePath;
+    }
+
+    public String getCsvTitle() {
+        return csvTitle;
+    }
+
+    public void setCsvTitle(String csvTitle) {
+        this.csvTitle = csvTitle;
+    }
+
+    public List<String> getCsvHeader() {
+        return csvHeader;
+    }
+
+    public void setCsvHeader(List<String> csvHeader) {
+        this.csvHeader = csvHeader;
+    }
+
+    public List<String[]> getCsvData() {
+        return csvData;
+    }
+
+    public void setCsvData(List<String[]> csvData) {
+        this.csvData = csvData;
     }
     
     

@@ -27,6 +27,7 @@ public class MietobjektDao extends GenericDao<Mietobjekt> {
      * @param status der Status des Mietobjekts (e.g., StatusMietobjekt.VERFÜGBAR).
      * @return List aller Mietobjekte mit dem gegebenen Status.
      * @throws Exception wenn die Datenbankabfrage fehlschlägt.
+     * @deprecated should be osboslete, use {@link #findByFields} instead.
      */
     public List<Mietobjekt> getByStatus(StatusMietobjekt status) throws Exception {
         return (List<Mietobjekt>) executeQuery(session -> {

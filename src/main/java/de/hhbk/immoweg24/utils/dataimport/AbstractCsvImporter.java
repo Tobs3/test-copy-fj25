@@ -23,7 +23,7 @@ public abstract class AbstractCsvImporter<T> {
     // -- 
     
     
-    public abstract List<T> processData();
+    public abstract List<T> processData() throws Exception;
     
     // -- 
     

@@ -5,7 +5,10 @@ import java.util.List;
 
 public class MieterCsvImporter extends AbstractCsvImporter {
 
-    // TODO
+    private final AdresseImporter adresseImporter = new AdresseImporter();
+    private final BankdatenImporter bankdatenImporter = new BankdatenImporter();
+    
+    // --
     
     public MieterCsvImporter(List expectedHeader, List csvHeader, List csvData) {
         super("Mieter", expectedHeader, csvHeader, csvData);
