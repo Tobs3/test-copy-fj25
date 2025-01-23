@@ -31,7 +31,7 @@ public class MietobjektDao extends GenericDao<Mietobjekt> {
     public List<Mietobjekt> getByStatus(StatusMietobjekt status) throws Exception {
         return (List<Mietobjekt>) executeQuery(session -> {
             Query<Mietobjekt> query = session.createQuery(
-                "FROM Mietobjekte WHERE status = :status",
+                "FROM Mietobjekt WHERE status = :status",
                 Mietobjekt.class
             );
             query.setParameter("status", status.name());
