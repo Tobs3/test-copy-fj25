@@ -15,8 +15,8 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        File reportFile = new File("C:\\immo24\\immoweg24\\src\\main\\resources\\Rechnung.jasper");
-        File targetFile = new File("C:\\immo24\\immoweg24\\src\\main\\resources\\ObjektBerichtReport.pdf");
+        File reportFile = new File("src\\main\\resources\\reports\\Rechnung.jasper");
+        File targetFile = new File("src\\main\\resources\\reports\\ObjektBerichtReport.pdf");
 
         try {
             // DAO-Instanzen erstellen
