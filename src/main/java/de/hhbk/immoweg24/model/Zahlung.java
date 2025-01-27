@@ -82,7 +82,7 @@ public class Zahlung extends ModelTemplate implements Serializable {
         return bankdaten;
     }
 
-    public void setBankDaten(Bankdaten bankdaten) {
+    public void setBankdaten(Bankdaten bankdaten) {
         this.bankdaten = bankdaten;
     }
     

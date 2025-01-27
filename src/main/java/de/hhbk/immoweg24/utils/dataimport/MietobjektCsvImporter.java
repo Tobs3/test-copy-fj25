@@ -1,26 +1,25 @@
 package de.hhbk.immoweg24.utils.dataimport;
 
-import de.hhbk.immoweg24.dao.GenericDao;
+import de.hhbk.immoweg24.dao.AdresseDao;
 import de.hhbk.immoweg24.dao.MietobjektDao;
 import de.hhbk.immoweg24.model.Adresse;
 import de.hhbk.immoweg24.model.Mietobjekt;
 import de.hhbk.immoweg24.model.enums.StatusMietobjekt;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class MietobjektCsvImporter extends AbstractCsvImporter {
     
-    private final AdresseImporter adresseImporter = new AdresseImporter();
-    private final GenericDao<Mietobjekt> mietobjektDao;
+    private final AdresseDao adresseDao;
+    private final MietobjektDao mietobjektDao;
     // --
     
     
     public MietobjektCsvImporter(List<String> expectedHeader, List<String> csvHeader, List<String[]> csvData) {
         super("Mietobjekte", expectedHeader, csvHeader, csvData);
         this.mietobjektDao = new MietobjektDao();
+        this.adresseDao = new AdresseDao();
     }
     
     // --
@@ -44,29 +43,27 @@ public class MietobjektCsvImporter extends AbstractCsvImporter {
             try {
                 // get existing or new adress object
                 Adresse adress = null;
-                String[] adressValues = new String[5];
-                adressValues[0] = row[2]; // Straße
-                adressValues[1] = row[3]; // Hausnummer
-                adressValues[2] = row[4]; // Postleitzahl
-                adressValues[3] = row[5]; // Stadt
-                adressValues[4] = row[6]; // Land
+                String strasse = row[2];
+                String hausnummer = row[3];
+                String plz = row[4];
+                String stadt = row[5];
+                String land = row[6];
                 try { 
-                    adress = adresseImporter.getOrCreate(adressValues);
+                    adress = adresseDao.getOrCreate(strasse, hausnummer, plz, stadt, land, false);
                 } catch (Exception e) {
                     throw e;
                 }
                 
                 // define Mietobjekt
-                Map<String, Object> searchFilters = new HashMap<>();
-                searchFilters.put("objektnummer", row[0]);
-                searchFilters.put("typ", row[1]);
-                searchFilters.put("adresse", adress);
-                searchFilters.put("kaltkosten", row[7]);
-                searchFilters.put("summeNebenkosten", row[8]);
-                searchFilters.put("status", row[10]);
+                Integer objektnummer = Integer.getInteger(row[0]);
+                String typ = row[1];
+                Adresse adresse = adress;
+                BigDecimal kaltkosten = BigDecimal.valueOf(Double.parseDouble(row[7]));
+                BigDecimal sumNebenkosten = BigDecimal.valueOf(Double.parseDouble(row[8]));
+                StatusMietobjekt status = StatusMietobjekt.valueOf((String) row[10]);
                 try {
                     // check if exists, else create
-                    mietobjekte.add(getOrCreate(searchFilters));
+                    mietobjekte.add(mietobjektDao.getOrCreate(objektnummer, typ, adresse, kaltkosten, sumNebenkosten, status));
                 } catch (Exception e) {
                     throw e;
                 }
@@ -75,38 +72,6 @@ public class MietobjektCsvImporter extends AbstractCsvImporter {
             }
         }
         return mietobjekte;
-    }
-    
-    // --
-    
-    public Mietobjekt getOrCreate(Map<String, Object> values) throws Exception {
-        Mietobjekt matchingMietobjekt = null;
-        try {
-            /* values could be outdated in CSV, so we only 
-               check the ObjectNumber for matching data */
-            Map<String, Object> reducedFilter = new HashMap<>();
-            reducedFilter.put("objektnummer", values.get("objektnummer"));
-            matchingMietobjekt = mietobjektDao.findByValues(reducedFilter);
-        } catch (Exception e) {
-            throw e;
-        }
-        if (matchingMietobjekt == null) { 
-            // TODO: TEST ME !!
-            Mietobjekt newMietobjekt = new Mietobjekt();
-            try {
-                newMietobjekt.setObjektnummer((int) values.get("objektnummer"));
-                newMietobjekt.setTyp(String.valueOf(values.get("typ")));
-                newMietobjekt.setAdresse((Adresse) values.get("adresse")); // sus
-                newMietobjekt.setKaltkosten((BigDecimal) values.get("kaltkosten"));
-                newMietobjekt.setSummeNebenkosten((BigDecimal) values.get("summeNebenkosten"));
-                newMietobjekt.setStatus(StatusMietobjekt.valueOf((String) values.get("status")));
-            } catch (Exception e) {
-                throw e;
-            }
-            return newMietobjekt;
-        } else {
-            return matchingMietobjekt;
-        }
     }
     
 }

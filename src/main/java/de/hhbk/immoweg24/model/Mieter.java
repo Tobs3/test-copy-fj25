@@ -117,6 +117,17 @@ public class Mieter extends ModelTemplate implements Serializable {
         this.bankdaten = bankdaten;
     }    
 
+    public void addBankdaten(Bankdaten bankdaten) {
+        if (!this.bankdaten.contains(bankdaten)) {
+            this.bankdaten.add(bankdaten);
+        }
+    }
+    
+    public void removeBankdaten(Bankdaten bankdaten) {
+        if (this.bankdaten.contains(bankdaten)) {
+            this.bankdaten.remove(bankdaten);
+        }
+    }
     
     // --
     

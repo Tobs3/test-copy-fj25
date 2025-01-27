@@ -26,15 +26,19 @@ public class Adresse extends ModelTemplate implements Serializable {
 
     @Column(name = "land", length = 50, nullable = false)
     private String land;
+    
+    @Column(name="hauptadresse", nullable = false)
+    private boolean hauptadresse;
 
     public Adresse() {}
 
-    public Adresse(String strasse, String hausnummer, String plz, String stadt, String land) {
+    public Adresse(String strasse, String hausnummer, String plz, String stadt, String land, boolean hauptadresse) {
         this.strasse = strasse;
         this.hausnummer = hausnummer;
         this.plz = plz;
         this.stadt = stadt;
         this.land = land;
+        this.hauptadresse = hauptadresse;
     }
 
     public long getId() {
@@ -84,6 +88,14 @@ public class Adresse extends ModelTemplate implements Serializable {
     public void setLand(String land) {
         this.land = land;
     }
+    
+    public boolean getHauptadresse () {
+        return hauptadresse;
+    }
+    
+    public void setHauptadresse(boolean hauptadresse) {
+        this.hauptadresse = hauptadresse;
+    }
 
     @Override
     public String toString() {
@@ -94,6 +106,7 @@ public class Adresse extends ModelTemplate implements Serializable {
                 ", plz='" + plz + '\'' +
                 ", stadt='" + stadt + '\'' +
                 ", land='" + land + '\'' +
+                ", hauptadresse='" + hauptadresse + '\'' +
                 '}';
     }
 }

@@ -21,20 +21,31 @@ public class Bankdaten extends ModelTemplate implements Serializable {
     @Column(name = "kontoinhaber", length = 100, nullable = false)
     private String kontoinhaber;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "mieter_id", referencedColumnName = "id")
-    private Mieter mieter;
+//    @ManyToOne(fetch = FetchType.LAZY) // Mieter contains Bankdaten, to be removed ..
+//    @JoinColumn(name = "mieter_id", referencedColumnName = "id", nullable = true)
+//    private Mieter mieter;
 
-    public Bankdaten(long id, String iban, String bic, String kontoinhaber, Mieter mieter) {
-        this.id = id;
+    // --
+    
+    
+    public Bankdaten(String iban, String bic, String kontoinhaber, Mieter mieter) {
         this.iban = iban;
         this.bic = bic;
         this.kontoinhaber = kontoinhaber;
-        this.mieter = mieter;
+//        this.mieter = mieter;
     }
 
+    public Bankdaten(String iban, String bic, String kontoinhaber) {
+        this.iban = iban;
+        this.bic = bic;
+        this.kontoinhaber = kontoinhaber;
+    }
+    
     public Bankdaten() {
     }
+    
+    // --
+    
 
     public long getId() {
         return id;
@@ -68,13 +79,13 @@ public class Bankdaten extends ModelTemplate implements Serializable {
         this.kontoinhaber = kontoinhaber;
     }
 
-    public Mieter getMieter() {
-        return mieter;
-    }
-
-    public void setMieter(Mieter mieter) {
-        this.mieter = mieter;
-    }
+//    public Mieter getMieter() {
+//        return mieter;
+//    }
+//
+//    public void setMieter(Mieter mieter) {
+//        this.mieter = mieter;
+//    }
 
     @Override
     public String toString() {

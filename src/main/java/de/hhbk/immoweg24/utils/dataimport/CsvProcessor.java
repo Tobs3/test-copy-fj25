@@ -31,23 +31,6 @@ public class CsvProcessor {
     
     public CsvProcessor() {}
     
-    // --
-    
-//    public void tempUsageExample() {
-//        // to be removed .. and improved ..
-//        CsvProcessor processor = new CsvProcessor("C:/mietobjekte2024.csv");
-//        try {
-//            if (processor.readCsv()) {
-//                AbstractCsvImporter importer = (AbstractCsvImporter) processor.getImporter();
-//                List<T> resultObjects = importer.processData();
-//                // TODO: user should confirm resultObjects 
-//                // TODO: save into db (importer.importData();)
-//            }
-//        } catch (Exception e) {
-//                e.printStackTrace();
-//        }
-//    }
-//    
     // -- 
 
     /**
