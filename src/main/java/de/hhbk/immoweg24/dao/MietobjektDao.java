@@ -81,4 +81,10 @@ public class MietobjektDao extends GenericDao<Mietobjekt> {
             return query.getResultList();
         });
     }
+    
+    public Mietobjekt getMietobjekt(Long id)  throws Exception {
+        return (Mietobjekt) executeTransaction(session -> session.get(Mietobjekt.class, id));
+    }
+    
+    
 }
