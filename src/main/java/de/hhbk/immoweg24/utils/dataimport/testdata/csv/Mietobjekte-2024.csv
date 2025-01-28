@@ -1,0 +1,12 @@
+﻿Mietobjekte;;;;;;;;;;
+Objektnummer;Typ;Straße;Hausnummer;Plz;Stadt;Land;Kaltkosten;Summe Nebenkosten;Warmkosten;Status
+135720011;Wohnung;Bananenstraße;43;40201;Düsseldorf;Deutschland;622,00 €;23,00 €;645,00 €;Reserviert
+135720012;Haus;Birnenstraße;5a;40202;Neuss;Deutschland;879,00 €;51,00 €;930,00 €;Vermietet
+135720013;Büro;Apfelstraße;61;40203;Aachen;Deutschland;1.136,00 €;200,35 €;1.336,35 €;Instandhaltung
+135720014;Garage;Steinstraße;22;40204;Berlin;Deutschland;1.393,00 €;199,62 €;1.592,62 €;Vermietet
+135720015;Garten;Staubstraße;1;40205;Hamburg;Deutschland;1.650,00 €;308,51 €;1.958,51 €;Verfügbar
+135720016;Appartment;Keinestraße;247;40206;Bremen;Deutschland;1.907,00 €;417,40 €;2.324,40 €;Vermietet
+135720017;Loft;Einestraße;1;40207;München;Deutschland;2.164,00 €;526,29 €;2.690,29 €;Reserviert
+135720018;Lokal;Zweistraße;2;40208;Bonn;Deutschland;2.421,00 €;603,22 €;3.024,22 €;Instandhaltung
+135720019;Wohnung;Anderestraße;69;40209;Düsseldorf;Deutschland;2.678,00 €;808,00 €;3.486,00 €;Vermietet
+135720020;Haus;Bootsstraße;3000;40210;Düsseldorf;Deutschland;2.935,00 €;821,00 €;3.756,00 €;Verfügbar
