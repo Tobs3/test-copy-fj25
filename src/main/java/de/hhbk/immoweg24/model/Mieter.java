@@ -29,8 +29,8 @@ public class Mieter extends ModelTemplate implements Serializable {
     @Column(name = "email", length = 100)
     private String email;
 
-    //@OneToMany(mappedBy = "mieter", cascade = CascadeType.ALL, orphanRemoval = true)
-    //private List<Bankdaten> bankdaten;
+    @OneToMany(mappedBy = "mieter", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Bankdaten> bankdaten;
     
     // --
     
@@ -106,7 +106,7 @@ public class Mieter extends ModelTemplate implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-/*
+
     public List<Bankdaten> getBankdaten() {
         return bankdaten;
     }
@@ -125,7 +125,7 @@ public class Mieter extends ModelTemplate implements Serializable {
         if (this.bankdaten.contains(bankdaten)) {
             this.bankdaten.remove(bankdaten);
         }
-    }*/
+    }
     
     // --
     
@@ -138,7 +138,7 @@ public class Mieter extends ModelTemplate implements Serializable {
                 ", adresse=" + adresse + 
                 ", telefon=" + telefon + 
                 ", email=" + email + 
-                //", bankdaten=" + bankdaten + 
+                ", bankdaten=" + bankdaten + 
                 '}';
     }
 }
