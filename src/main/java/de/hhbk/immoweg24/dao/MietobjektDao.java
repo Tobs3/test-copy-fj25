@@ -54,15 +54,15 @@ public class MietobjektDao extends GenericDao<Mietobjekt> {
             throw e;
         }
         if (matchingMietobjekt == null) { 
-            // TODO: TEST ME !!
             Mietobjekt newMietobjekt = new Mietobjekt();
             try {
                 newMietobjekt.setObjektnummer((int) values.get("objektnummer"));
                 newMietobjekt.setTyp(String.valueOf(values.get("typ")));
-                newMietobjekt.setAdresse((Adresse) adresseDao.getById(Long.getLong((String) values.get("adresse")))); // sus // should contain FK(Adressen)
+                Long adresseId = (Long) values.get("adresse");
+                newMietobjekt.setAdresse((Adresse) adresseDao.getById(adresseId)); // sus // should contain FK(Adressen)
                 newMietobjekt.setKaltkosten((BigDecimal) values.get("kaltkosten"));
                 newMietobjekt.setSummeNebenkosten((BigDecimal) values.get("summeNebenkosten"));
-                newMietobjekt.setStatus(StatusMietobjekt.valueOf((String) values.get("status")));
+                newMietobjekt.setStatus((StatusMietobjekt) values.get("status"));
             } catch (Exception e) {
                 throw e;
             }

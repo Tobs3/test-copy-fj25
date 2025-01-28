@@ -55,12 +55,15 @@ public class MietobjektCsvImporter extends AbstractCsvImporter {
                 }
                 
                 // define Mietobjekt
-                Integer objektnummer = Integer.getInteger(row[0]);
+                Integer objektnummer = Integer.valueOf(row[0]);
                 String typ = row[1];
                 Adresse adresse = adress;
-                BigDecimal kaltkosten = BigDecimal.valueOf(Double.parseDouble(row[7]));
-                BigDecimal sumNebenkosten = BigDecimal.valueOf(Double.parseDouble(row[8]));
-                StatusMietobjekt status = StatusMietobjekt.valueOf((String) row[10]);
+                // expected kosten format: "622,00 €"
+                String rawKaltkosten = row[7].replaceAll("[^\\d,]", "").replace(',', '.');
+                BigDecimal kaltkosten = BigDecimal.valueOf(Double.parseDouble(rawKaltkosten));
+                String rawSumNebenkosten = row[8].replaceAll("[^\\d,]", "").replace(',', '.');
+                BigDecimal sumNebenkosten = BigDecimal.valueOf(Double.parseDouble(rawSumNebenkosten));
+                StatusMietobjekt status = StatusMietobjekt.fromString((String) row[10]);
                 try {
                     // check if exists, else create
                     mietobjekte.add(mietobjektDao.getOrCreate(objektnummer, typ, adresse, kaltkosten, sumNebenkosten, status));

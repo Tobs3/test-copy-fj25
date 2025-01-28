@@ -87,17 +87,18 @@ public class CsvProcessor {
     
     
     public Object getImporter() {
-        switch (csvTitle.toLowerCase()) {
-            case "mietobjekt":
-                return new MietobjektCsvImporter(MIETOBJEKT_HEADER, csvHeader, csvData);
-            case "mieter":
-                return new MieterCsvImporter(MIETER_HEADER, csvHeader, csvData);
-            case "zahlung":
-                return new ZahlungCsvImporter(ZAHLUNG_HEADER, csvHeader, csvData);
-            default:
-                throw new IllegalArgumentException("Unbekannter CSV-Titel: " + csvTitle);
+        String title = csvTitle.toLowerCase();
+        if (title.contains("mietobjekte")) {
+            return new MietobjektCsvImporter(MIETOBJEKT_HEADER, csvHeader, csvData);
+        } else if (title.contains("mieter")) {
+            return new MieterCsvImporter(MIETER_HEADER, csvHeader, csvData);
+        } else if (title.contains("zahlungen")) {
+            return new ZahlungCsvImporter(ZAHLUNG_HEADER, csvHeader, csvData);
+        } else {
+            throw new IllegalArgumentException("Unbekannter CSV-Titel: " + csvTitle);
         }
     }
+
 
     
     // --

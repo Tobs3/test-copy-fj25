@@ -16,4 +16,13 @@ public enum StatusMietobjekt {
     public String getBeschreibung() {
         return beschreibung;
     }
+    
+    public static StatusMietobjekt fromString(String description) {
+        for (StatusMietobjekt status : StatusMietobjekt.values()) {
+            if (status.getBeschreibung().equalsIgnoreCase(description)) {
+                return status;
+            }
+        }
+        throw new IllegalArgumentException("No enum constant for description: " + description);
+    }
 }

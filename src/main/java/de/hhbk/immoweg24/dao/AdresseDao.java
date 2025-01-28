@@ -53,7 +53,7 @@ public class AdresseDao extends GenericDao<Adresse> {
                 String land = String.valueOf(searchFilters.get("land"));
                 if (land != null && !land.isEmpty()) newAdress.setLand(land);
                 
-                boolean hauptadresse = Boolean.parseBoolean((String) searchFilters.get("hauptadresse"));
+                boolean hauptadresse = Boolean.parseBoolean(String.valueOf(searchFilters.get("hauptadresse")));
                 newAdress.setHauptadresse(hauptadresse);
             } catch (Exception e) {
                 throw e;
