@@ -97,6 +97,10 @@ public class Adresse extends ModelTemplate implements Serializable {
         this.hauptadresse = hauptadresse;
     }
 
+    public String toLabel() {
+        return strasse + " " + hausnummer + ", " + plz + " " + stadt + ", " + land;
+    }
+
     @Override
     public String toString() {
         return "Adresse{" +

@@ -20,6 +20,6 @@ public class MietObjektBean extends BeanTemplate<Mietobjekt, ServiceTemplate<Mie
     public void init(){
         resetItem();
     }
-    
-    public List getMietObjektOptionen() { return Arrays.asList(StatusMietobjekt.values()); }
+
+    public List<StatusMietobjekt> getMietObjektOptionen() { return Arrays.asList(StatusMietobjekt.values()); }
 }

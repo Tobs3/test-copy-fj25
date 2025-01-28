@@ -1,5 +1,6 @@
 package de.hhbk.immoweg24.model;
 
+import de.hhbk.immoweg24.dao.AdresseDao;
 import de.hhbk.immoweg24.model.enums.StatusMietobjekt;
 import jakarta.persistence.*;
 import java.io.Serializable;

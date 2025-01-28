@@ -12,8 +12,7 @@ public class AdresseDao extends GenericDao<Adresse> {
     public AdresseDao() {
         super(Adresse.class);
     }
-    
-    
+
     // --
     
     public Adresse getOrCreate(String strasse, String hausnummer, String plz, String stadt, String land, Boolean hauptadresse) throws Exception {
@@ -54,8 +53,8 @@ public class AdresseDao extends GenericDao<Adresse> {
                 String land = String.valueOf(searchFilters.get("land"));
                 if (land != null && !land.isEmpty()) newAdress.setLand(land);
                 
-                Boolean hauptadresse = Boolean.valueOf((String) searchFilters.get("hauptadresse"));
-                if (hauptadresse != null) newAdress.setHauptadresse(hauptadresse);
+                boolean hauptadresse = Boolean.parseBoolean((String) searchFilters.get("hauptadresse"));
+                newAdress.setHauptadresse(hauptadresse);
             } catch (Exception e) {
                 throw e;
             }
