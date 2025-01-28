@@ -12,7 +12,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="immoweg24" options="-endorseddirs $PROJECT_DIR$/target/endorsed" />
+      <module name="immoweg24" options="" />
     </option>
   </component>
 </project>
