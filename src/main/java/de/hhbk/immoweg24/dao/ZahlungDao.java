@@ -73,5 +73,45 @@ public class ZahlungDao extends GenericDao<Zahlung> {
             return matchingZahlung;
         }
     }
+   // Berechnung der 'geleisteten' Zahlungen (Zahlung IST) für einen Zeitraum
+    public BigDecimal berechneZahlungIst(LocalDate startDatum, LocalDate endDatum) {
+        try {
+            return (BigDecimal) executeQuery(session -> {
+                String query = "SELECT COALESCE(SUM(z.betrag), 0) " +
+                               "FROM Zahlung z " +
+                               "WHERE z.datum BETWEEN :startDatum AND :endDatum " +
+                               "AND z.status = :status";
+                return session.createQuery(query, BigDecimal.class)
+                        .setParameter("startDatum", startDatum)
+                        .setParameter("endDatum", endDatum)
+                        .setParameter("status", StatusZahlung.EINGEGANGEN)
+                        .uniqueResult();
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+            return BigDecimal.ZERO;
+        }
+    }
+
+    // Berechnung der 'offenen' Zahlungen (Zahlung SOLL) für einen Zeitraum
+    public BigDecimal berechneZahlungSoll(LocalDate startDatum, LocalDate endDatum) {
+        try {
+            return (BigDecimal) executeQuery(session -> {
+                String query = "SELECT COALESCE(SUM(z.betrag), 0) " +
+                               "FROM Zahlung z " +
+                               "WHERE z.datum BETWEEN :startDatum AND :endDatum " +
+                               "AND z.status = :status";
+                return session.createQuery(query, BigDecimal.class)
+                        .setParameter("startDatum", startDatum)
+                        .setParameter("endDatum", endDatum)
+                        .setParameter("status", StatusZahlung.AUSSTEHEND)
+                        .uniqueResult();
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+            return BigDecimal.ZERO;
+        }
+    }
+
     
 }
