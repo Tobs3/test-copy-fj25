@@ -28,7 +28,7 @@ public class HibernateUtil
             sessionFactory = new Configuration() 
                     .setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect") 
                     .setProperty("hibernate.connection.driver_class", "com.mysql.cj.jdbc.Driver")
-                    .setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/hhbk?zeroDateTimeBehavior=convertToNull")
+                    .setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/hhbk?zeroDateTimeBehavior=convertToNull&createDatabaseIfNotExist=true")
                     .setProperty("hibernate.connection.username", "root")
                     .setProperty("hibernate.hbm2ddl.auto", "update")
                     .setProperty("hibernate.enable_lazy_load_no_trans", "true")
