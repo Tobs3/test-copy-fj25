@@ -22,7 +22,7 @@ public class Zahlung extends ModelTemplate implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mieter_id", referencedColumnName = "id")
     private Mieter mieter;
-    
+        
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bankdaten_id", referencedColumnName = "id")
     private Bankdaten bankdaten;
