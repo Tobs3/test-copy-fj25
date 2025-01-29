@@ -14,6 +14,10 @@ public class AdresseDao extends GenericDao<Adresse> {
     }
 
     // --
+
+    public Adresse getAdresseById(Long id) throws Exception {
+        return findByValue("id", id);
+    }
     
     public Adresse getOrCreate(String strasse, String hausnummer, String plz, String stadt, String land, Boolean hauptadresse) throws Exception {
         HashMap<String, Object> searchFilters = new HashMap<>();
