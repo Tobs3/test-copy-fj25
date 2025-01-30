@@ -105,7 +105,7 @@
         </p:scrollPanel>
         <br/><br/>                      
   
-        <p:commandButton value="Speichern" style="width: 120px;" action="#{item.saveItem()}" oncomplete="PF('dlgEdit').hide();" update=":contentForm, messageBox"/>
+        <p:commandButton value="Speichern" style="width: 120px;" action="#{mieter.saveItem()}" oncomplete="PF('dlgEdit').hide();" update=":contentForm, messageBox"/>
         &nbsp;
         <p:commandButton value="Schlie&szlig;en" style="width: 120px;" onclick="PF('dlgEdit').hide();" immediate="true"/>  
     </h:form>                           

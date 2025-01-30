@@ -29,9 +29,20 @@ public class Mieter extends ModelTemplate implements Serializable {
     @Column(name = "email", length = 100)
     private String email;
 
-    @OneToMany(mappedBy = "mieter", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Bankdaten> bankdaten;
-    
+
+    @OneToMany(mappedBy = "mieter", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Zahlung> zahlungen;
+
+    public List<Zahlung> getZahlungen() {
+        return zahlungen;
+    }
+
+    public void setZahlungen(List<Zahlung> zahlungen) {
+        this.zahlungen = zahlungen;
+    }
+
     // --
     
     

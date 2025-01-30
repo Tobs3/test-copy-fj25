@@ -1,12 +1,6 @@
 package de.hhbk.immoweg24.utils;
  
-import de.hhbk.immoweg24.model.Adresse;
-import de.hhbk.immoweg24.model.Mieter;
-import de.hhbk.immoweg24.model.Mietobjekt;
-import de.hhbk.immoweg24.model.Bankdaten; 
-import de.hhbk.immoweg24.model.Nebenkosten;
-import de.hhbk.immoweg24.model.Zahlung;
-import de.hhbk.immoweg24.model.Benutzer;
+import de.hhbk.immoweg24.model.*;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -42,7 +36,9 @@ public class HibernateUtil
                     .addAnnotatedClass(Bankdaten.class)
                     .addAnnotatedClass(Zahlung.class)
                     .addAnnotatedClass(Benutzer.class)
-                    //TODO: ADD OTHER CLASSES HERE
+                    .addAnnotatedClass(Benutzerrollen.class)
+                    .addAnnotatedClass(Dokument.class)
+                    .addAnnotatedClass(Mietverhaeltnis.class)
                     .buildSessionFactory();
         }
         return sessionFactory; 
