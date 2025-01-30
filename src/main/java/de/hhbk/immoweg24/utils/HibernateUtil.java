@@ -7,7 +7,16 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
- 
+/**
+ * Die Klasse HibernateUtils verwaltet die Hibernate-Sitzung (SessionFactory).
+ * Sie stellt Methoden bereit, um die Verbindung zur Datenbank aufzubauen und zu verwalten.
+ *
+ * Hauptfunktionen:
+ * - Initialisiert die Hibernate SessionFactory
+ * - Bietet eine Methode zum Abrufen der SessionFactory für DAO-Klassen
+ * - Behandelt das ordnungsgemäße Schließen der SessionFactory beim Beenden der Anwendung
+ */
+
 public class HibernateUtil 
 {
   //-------------------------------------------------------------------------
