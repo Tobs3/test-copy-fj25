@@ -6,6 +6,11 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+/**
+ * Die Mietobjekt-Klasse repräsentiert eine Immobilie oder ein Mietobjekt.
+ * Sie enthält Informationen über Adresse, Größe, Mietpreis und zugehörige Mieter.
+ */
+
 @Entity
 @Table(name = "mietobjekt")
 public class Mietobjekt extends ModelTemplate implements Serializable {

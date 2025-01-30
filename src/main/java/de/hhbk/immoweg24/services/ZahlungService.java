@@ -6,6 +6,11 @@ import jakarta.inject.Inject;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+/**
+ * Der ZahlungService verwaltet die Zahlungen und stellt Methoden zur Verfügung, 
+ * um Berichte zu generieren und Zahlungsinformationen abzurufen.
+ */
+
 public class ZahlungService {
     @Inject
     private ZahlungDao zahlungDao;

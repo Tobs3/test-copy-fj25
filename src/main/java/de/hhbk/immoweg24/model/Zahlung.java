@@ -7,6 +7,12 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+/**
+ * Die Zahlung-Klasse repräsentiert eine Zahlung eines Mieters für ein Mietobjekt.
+ * Sie enthält Informationen über den Betrag, das Datum, den Verwendungszweck 
+ * und den Zahlungsstatus.
+ */
+
 @Entity
 @Table(name = "zahlung")
 public class Zahlung extends ModelTemplate implements Serializable {

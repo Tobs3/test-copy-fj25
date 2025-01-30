@@ -5,6 +5,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 
+/**
+ * Das BankdatenDao ist für den Zugriff auf Bankdaten von Mietern zuständig.
+ * Es ermöglicht das Speichern und Abrufen von Bankverbindungen.
+ * 
+ * Hauptfunktionen:
+ * - Speichern und Aktualisieren von IBAN, BIC und Kontoinhaber-Daten
+ * - Verknüpfung der Bankdaten mit den Mietern
+ */
 public class BankdatenDao extends GenericDao<Bankdaten> {
     
     public BankdatenDao() {

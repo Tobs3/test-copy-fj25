@@ -4,6 +4,12 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * Die Mieter-Klasse repräsentiert einen Mieter eines Mietobjekts.
+ * Sie speichert persönliche Informationen wie Name, Adresse, Telefonnummer, 
+ * E-Mail und Bankdaten und hat eine Beziehung zu den entsprechenden Zahlungen.
+ */
+
 @Entity
 @Table(name = "mieter")
 public class Mieter extends ModelTemplate implements Serializable {

@@ -3,6 +3,11 @@ package de.hhbk.immoweg24.model;
 import jakarta.persistence.*;
 import java.io.Serializable;
 
+/**
+ * Die Adresse-Klasse speichert Adressdaten eines Mieters oder eines Mietobjekts.
+ * Sie enthält unter anderem Straßenname, Hausnummer, PLZ, Stadt und Land.
+ */
+
 @Entity
 @Table(name = "adresse")
 public class Adresse extends ModelTemplate implements Serializable {
