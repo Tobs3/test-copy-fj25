@@ -11,6 +11,11 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Das ZahlungDao stellt Methoden für den Zugriff auf Zahlungsdaten bereit.
+ * Es ermöglicht das Abrufen, Erstellen und Berechnen von Zahlungen für einen bestimmten Zeitraum.
+ */
+
 public class ZahlungDao extends GenericDao<Zahlung> {
 
     public ZahlungDao() {

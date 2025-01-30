@@ -13,6 +13,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Die Hauptklasse der Anwendung.
+ * 
+ * Diese Klasse führt die folgenden Schritte aus:
+ * 1. Initialisiert DAO-Klassen für den Zugriff auf Mietobjekte und Mietverhältnisse.
+ * 2. Lädt Daten aus der Datenbank (Mietobjekte und Mietverhältnisse).
+ * 3. Erstellt einen Bericht mit JasperReports, indem die geladenen Daten in ein PDF-Dokument eingefügt werden.
+ * 4. Speichert den generierten Bericht als PDF-Datei im resources/reports-Ordner.
+ *
+ * Fehlerbehandlung:
+ * - Falls ein Fehler auftritt, wird eine Fehlermeldung in der Konsole ausgegeben.
+ */
+
 public class Main {
     public static void main(String[] args) {
         File reportFile = new File("src\\main\\resources\\reports\\Rechnung.jasper");

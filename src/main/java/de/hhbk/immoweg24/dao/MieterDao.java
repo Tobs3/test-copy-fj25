@@ -6,6 +6,15 @@ import de.hhbk.immoweg24.model.Mieter;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Das MieterDao ermöglicht den Datenzugriff auf Mieter.
+ * Es bietet Methoden zum Suchen, Speichern und Verwalten von Mietern.
+ * 
+ * Hauptfunktionen:
+ * - Finden eines Mieters anhand von ID oder anderen Eigenschaften
+ * - Verwaltung der Beziehungen zwischen Mietern und ihren Mietobjekten
+ */
+
 public class MieterDao extends GenericDao<Mieter> {
     
     public MieterDao() {

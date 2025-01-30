@@ -3,6 +3,11 @@ package de.hhbk.immoweg24.model;
 import jakarta.persistence.*;
 import java.io.Serializable;
 
+/**
+ * Die Bankdaten-Klasse speichert Bankinformationen eines Mieters.
+ * Sie enthält Details wie IBAN, BIC und den Kontoinhaber.
+ */
+
 @Entity
 @Table(name = "bankdaten")
 public class Bankdaten extends ModelTemplate implements Serializable {

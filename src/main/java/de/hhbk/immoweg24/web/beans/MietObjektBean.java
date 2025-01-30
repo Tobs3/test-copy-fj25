@@ -11,6 +11,15 @@ import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 
 
+/**
+ * Das MietobjektBean verwaltet Mietobjekte in der Benutzeroberfläche.
+ * Es stellt Methoden zur Verfügung, um Immobilien anzuzeigen und zu bearbeiten.
+ * 
+ * Hauptfunktionen:
+ * - Anzeigen und Bearbeiten von Mietobjektdetails
+ *
+ */
+
 @Named(value = "mietobjekt")
 @SessionScoped
 public class MietObjektBean extends BeanTemplate<Mietobjekt, ServiceTemplate<Mietobjekt, MietobjektDao>>{
