@@ -25,4 +25,13 @@ public enum StatusZahlung {
     public String getBeschreibung() {
         return beschreibung;
     }    
+    
+    public static StatusZahlung fromString(String description) {
+        for (StatusZahlung status : StatusZahlung.values()) {
+            if (status.getBeschreibung().equalsIgnoreCase(description)) {
+                return status;
+            }
+        }
+        throw new IllegalArgumentException("No enum constant for description: " + description);
+    }
 }

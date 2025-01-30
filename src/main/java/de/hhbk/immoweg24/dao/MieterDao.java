@@ -17,6 +17,8 @@ import java.util.Map;
 
 public class MieterDao extends GenericDao<Mieter> {
     
+    private AdresseDao adresseDao = new AdresseDao();
+    
     public MieterDao() {
         super(Mieter.class);
     }
@@ -30,10 +32,10 @@ public class MieterDao extends GenericDao<Mieter> {
         
         if (vorname != null && !vorname.isEmpty()) searchFilters.put("vorname", vorname);
         if (nachname != null && !nachname.isEmpty()) searchFilters.put("nachname", nachname);
-        if (adresse != null) searchFilters.put("adresse", adresse);
+//        if (adresse != null) searchFilters.put("adresse", adresse.getId());
         if (telefon != null && !telefon.isEmpty()) searchFilters.put("telefon", telefon);
         if (email != null && !email.isEmpty()) searchFilters.put("email", email);
-        if (bankdaten != null) searchFilters.put("bankdaten", bankdaten);
+//        if (bankdaten != null) searchFilters.put("bankdaten", bankdaten);
         
         return getOrCreate(searchFilters);
     }
@@ -41,7 +43,6 @@ public class MieterDao extends GenericDao<Mieter> {
     public Mieter getOrCreate(Map<String, Object> values) throws Exception {
         Mieter matchingMieter = null;
         try {
-            // TODO: not sure about adresse and bankdaten here
             matchingMieter = findByValues(values);
         } catch (Exception e) {
             throw e;
@@ -55,7 +56,11 @@ public class MieterDao extends GenericDao<Mieter> {
                 String nachname = String.valueOf(values.get("nachname"));
                 if (nachname != null && !nachname.isEmpty()) newMieter.setNachname(nachname);
                 
-                Adresse adresse = (Adresse) values.get("adresse");
+                Long adresseId = (Long) values.get("adresse");
+                Adresse adresse = null;
+                if (adresseId != null) {
+                    adresse = (Adresse) adresseDao.getById(adresseId);
+                }
                 if (adresse != null) newMieter.setAdresse(adresse);
                 
                 String telefon = String.valueOf(values.get("telefon"));

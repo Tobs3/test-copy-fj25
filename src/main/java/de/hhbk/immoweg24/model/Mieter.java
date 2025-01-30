@@ -27,7 +27,7 @@ public class Mieter extends ModelTemplate implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "adresse_id", referencedColumnName = "id")
-    private Adresse adresse;
+    private Adresse adresse = new Adresse();
 
     @Column(name = "telefon", length = 20)
     private String telefon;

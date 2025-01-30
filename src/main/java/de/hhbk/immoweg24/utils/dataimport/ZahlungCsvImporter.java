@@ -31,70 +31,75 @@ public class ZahlungCsvImporter extends AbstractCsvImporter {
 
     @Override
     public List<Zahlung> processData() throws Exception {
-        // Betrag, IBAN, BIC, Kontoinhaber, Objektnummer, Status, Verwendungszweck, Datum 
-        if (!isValid()) throw new IllegalArgumentException("Zahlung CSV ist ungültig.");
-        List<Zahlung> zahlungen = new ArrayList<>();
-        
-        List<String[]> data = csvData;
-        for (String[] row : data) {
-            try {
-                BigDecimal betrag = BigDecimal.valueOf(Double.parseDouble(row[0]));
-                String iban = row[1];
-                String bic = row[2];
-                String kontoinhaber = row[3];
-                String objektnummer = row[4];
-                StatusZahlung status = StatusZahlung.valueOf(row[5]);
-                String verwendungszweck = row[6];
-                LocalDate datum = convertToDate(row[7]);
-                
-                Bankdaten bankdaten = null;
-                try {
-                    bankdatenDao.getOrCreate(iban, bic, kontoinhaber);
-                } catch (Exception e) {
-                    throw e;
-                }
-                Mietobjekt mietobjekt = null;
-                try {
-                    mietobjektDao.findByValue("objektnummer", objektnummer);
-                } catch (Exception e) {
-                    throw e;
-                }
-                Mieter mieter = null; // maybe check relational table for mieter of this mietobjekt
-                
-                Zahlung zahlung = null;
-                try {
-                    zahlung = zahlungDao.getOrCreate(betrag, mieter, bankdaten, mietobjekt, verwendungszweck, datum, status);
-                } catch (Exception e) {
-                    throw e;
-                }
-                
-                zahlungen.add(zahlung);
-            } catch (Exception e) {
-                throw e;
-            }
-        }
-        return zahlungen;
+        throw new UnsupportedOperationException("Nicht implementiert.");
     }
     
-    public LocalDate convertToDate(String dateString) {
-        // Definieren der beiden möglichen Formate
-        DateTimeFormatter format1 = DateTimeFormatter.ofPattern("MMM dd", java.util.Locale.GERMAN); // Okt 24
-        DateTimeFormatter format2 = DateTimeFormatter.ofPattern("dd.MM.yyyy"); // 01.10.2024
-
-        LocalDate localDate = null;
-        try {
-            // Versuche, das Datum im ersten Format zu parsen
-            localDate = LocalDate.parse(dateString, format1);
-        } catch (DateTimeParseException e) {
-            try {
-                // Wenn das erste Format nicht passt, versuche das zweite
-                localDate = LocalDate.parse(dateString, format2);
-            } catch (DateTimeParseException e2) {
-                // Wenn keines der Formate passt, wird eine Exception geworfen
-                throw new IllegalArgumentException("Ungültiges Datumsformat: " + dateString);
-            }
-        }
-        return localDate;
-    }
+//    @Override
+//    public List<Zahlung> processData() throws Exception {
+//        // Betrag, IBAN, BIC, Kontoinhaber, Objektnummer, Status, Verwendungszweck, Datum 
+//        if (!isValid()) throw new IllegalArgumentException("Zahlung CSV ist ungültig.");
+//        List<Zahlung> zahlungen = new ArrayList<>();
+//        
+//        List<String[]> data = csvData;
+//        for (String[] row : data) {
+//            try {
+//                // expected kosten format: "622,00 €"
+//                String rawBetrag = row[0].replaceAll("[^\\d,]", "").replace(',', '.');
+//                BigDecimal betrag = BigDecimal.valueOf(Double.parseDouble(rawBetrag));
+//                
+//                String iban = row[1];
+//                String bic = row[2];
+//                String kontoinhaber = row[3];
+//                String objektnummer = row[4];
+//                StatusZahlung status = StatusZahlung.fromString(row[5]);
+//                String verwendungszweck = row[6];
+//                LocalDate datum = convertToDate(row[7]);
+////                LocalDate datum = null;
+//                
+//                Bankdaten bankdaten = null;
+//                try {
+//                    bankdatenDao.getOrCreate(iban, bic, kontoinhaber);
+//                } catch (Exception e) {
+//                    throw e;
+//                }
+//                Mietobjekt mietobjekt = null;
+//                try {
+//                    mietobjektDao.findByValue("objektnummer", objektnummer);
+//                } catch (Exception e) {
+//                    throw e;
+//                }
+//                Mieter mieter = null; // maybe check relational table for mieter of this mietobjekt
+//                
+//                Zahlung zahlung = null;
+//                try {
+//                    zahlung = zahlungDao.getOrCreate(betrag, mieter, bankdaten, mietobjekt, verwendungszweck, datum, status);
+//                } catch (Exception e) {
+//                    throw e;
+//                }
+//                
+//                zahlungen.add(zahlung);
+//            } catch (Exception e) {
+//                throw e;
+//            }
+//        }
+//        return zahlungen;
+//    }
+//    
+//    public LocalDate convertToDate(String dateString) {
+//        DateTimeFormatter format1 = DateTimeFormatter.ofPattern("MMM dd", java.util.Locale.GERMAN); // Okt 24
+//        DateTimeFormatter format2 = DateTimeFormatter.ofPattern("dd.MM.yyyy"); // 01.10.2024
+//
+//        LocalDate localDate = null;
+//        try {
+//            localDate = LocalDate.parse(dateString, format1);
+//        } catch (DateTimeParseException e) {
+//            try {
+//                localDate = LocalDate.parse(dateString, format2);
+//            } catch (DateTimeParseException e2) {
+//                throw new IllegalArgumentException("Ungültiges Datumsformat: " + dateString);
+//            }
+//        }
+//        return localDate;
+//    }
     
 }
