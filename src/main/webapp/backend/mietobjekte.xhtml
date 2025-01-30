@@ -100,6 +100,11 @@
                 <p:outputLabel for="ip_typ" value="Typ"/>
                 <p:inputText id="ip_typ" value="#{mietobjekt.item.typ}" style="width: 100%;"/>
 
+                <p:outputLabel for="ip_adresse" value="Adresse"/>
+                <p:selectOneMenu id="ip_adresse" value="#{mietobjekt.item.adresse}" style="width: 100%;">
+                    <f:selectItems value="#{adresse.adresseOptionen}" var="rvar" itemLabel="#{rvar.toLabel()}"/>
+                </p:selectOneMenu>
+
                 <p:outputLabel for="ip_status" value="Status"/>
                 <p:selectOneMenu id="ip_status" value="#{mietobjekt.item.status}" style="width: 100%;">
                     <f:selectItems value="#{mietobjekt.mietObjektOptionen}" var="rvar" itemLabel="#{rvar.name()}"/>
