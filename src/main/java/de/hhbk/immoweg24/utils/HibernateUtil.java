@@ -36,9 +36,6 @@ public class HibernateUtil
                     .addAnnotatedClass(Bankdaten.class)
                     .addAnnotatedClass(Zahlung.class)
                     .addAnnotatedClass(Benutzer.class)
-                    .addAnnotatedClass(Benutzerrollen.class)
-                    .addAnnotatedClass(Dokument.class)
-                    .addAnnotatedClass(Mietverhaeltnis.class)
                     .buildSessionFactory();
         }
         return sessionFactory; 
